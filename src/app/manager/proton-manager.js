@@ -9,11 +9,15 @@ class ProtonManager {
 
     init() {
 
-        let widgetContainers = $('[proton]');
-        let widgetNames = widgetContainers.toArray().map(x => $(x).attr('proton'));
+        let widgetContainers = $('[proton]').toArray();
 
-        widgetNames.forEach((item) => {
-            var instance = this.createInstance(item);
+        widgetContainers.forEach((container) => {
+            let widgetName = $(container).attr('proton');
+            var instance = this.createInstance(widgetName);
+
+            if (instance) {
+                instance.container = container;
+            }
 
             this.callHooks(instance);
 

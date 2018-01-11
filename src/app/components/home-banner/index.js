@@ -14,7 +14,7 @@ export class HomeBanner extends WidgetBase {
 
     render() {
 
-        var compiledTemplate = this.compileTemplate('home-banner', {});
+        var compiledTemplate = this.compileTemplate('home-banner1', {});
 
         var promise = new Promise((resolve, reject) => {
             console.log("render function called.");

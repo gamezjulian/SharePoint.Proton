@@ -6,22 +6,37 @@ export default class WidgetBase extends KnockoutComponent {
         super();
 
         WidgetService.registerWidget(this);
-        this.container = null; 
+        this.container = null;
         this.templates = [];
+        this.templatesFile = this.templateUrl();
+        this.getTemplates();
     }
+
+    // Template methods
 
     templateUrl() {
         return this.templatesFile = [];
     }
 
     compileTemplate(id, model, selector) {
+        var element = null;
+
+        if (selector) {
+            element = $(selector);
+        } else {
+            element = this.container;
+        }
+
+        var $element = $(element);
 
         //validate if selector es null
-        this.templatesFile = this.templateUrl();
-        this.getTemplates();
-        var template = this.templates.find(x => x == id);
+        var template = this.templates.find(x => x.id == id);
 
-        return {};
+        if (template) {
+            element.html(template);
+        }
+
+        return element;
     }
 
     getTemplates() {
@@ -35,7 +50,7 @@ export default class WidgetBase extends KnockoutComponent {
 
     }
 
-    //hooks methods
+    //Hooks methods
 
     preRender() {
         return Promise.resolve(this);
