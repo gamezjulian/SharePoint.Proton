@@ -4,13 +4,14 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "webpack-dev-server -d"
+    "start": "webpack-dev-server --https -d"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
     "jquery": "^3.2.1",
-    "raw-loader": "^0.5.1"
+    "raw-loader": "^0.5.1",
+    "sp-pnp-js": "2.0.3"
   },
   "devDependencies": {
     "babel-core": "^6.26.0",
