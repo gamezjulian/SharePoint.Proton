@@ -60,40 +60,11 @@
 /******/ 	__webpack_require__.p = "/public/assets/";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 4);
+/******/ 	return __webpack_require__(__webpack_require__.s = 5);
 /******/ })
 /************************************************************************/
 /******/ ([
 /* 0 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return service; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__configuration_configurationFactory__ = __webpack_require__(8);
-
-
-class WidgetService {
-    constructor() {
-    }
-
-    registerWidget(widget) {
-        __WEBPACK_IMPORTED_MODULE_0__configuration_configurationFactory__["a" /* default */].register(widget);
-    }
-
-    getWidgetInstance(name) {
-        const Class = __WEBPACK_IMPORTED_MODULE_0__configuration_configurationFactory__["a" /* default */].find(name);
-        const instance = new Class();
-
-        return instance;
-    }
-}
-
-let service = new WidgetService();
-
- 
-
-/***/ }),
-/* 1 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
@@ -10353,11 +10324,40 @@ return jQuery;
 
 
 /***/ }),
+/* 1 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return service; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__configuration_configurationFactory__ = __webpack_require__(9);
+
+
+class WidgetService {
+    constructor() {
+    }
+
+    registerWidget(widget) {
+        __WEBPACK_IMPORTED_MODULE_0__configuration_configurationFactory__["a" /* default */].register(widget);
+    }
+
+    getWidgetInstance(name) {
+        const Class = __WEBPACK_IMPORTED_MODULE_0__configuration_configurationFactory__["a" /* default */].find(name);
+        const instance = new Class();
+
+        return instance;
+    }
+}
+
+let service = new WidgetService();
+
+ 
+
+/***/ }),
 /* 2 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__home_banner__ = __webpack_require__(7);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__home_banner__ = __webpack_require__(8);
 /* unused harmony reexport HomeBanner */
 // Here we configure all the components to provide only one module
 
@@ -10368,8 +10368,8 @@ return jQuery;
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* WEBPACK VAR INJECTION */(function($) {/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__services_WidgetService__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__KnockoutComponent__ = __webpack_require__(9);
+/* WEBPACK VAR INJECTION */(function($) {/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__services_WidgetService__ = __webpack_require__(1);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__KnockoutComponent__ = __webpack_require__(10);
 
 
 
@@ -10379,7 +10379,7 @@ class WidgetBase extends __WEBPACK_IMPORTED_MODULE_1__KnockoutComponent__["a" /*
 
         __WEBPACK_IMPORTED_MODULE_0__services_WidgetService__["a" /* WidgetService */].registerWidget(this);
         this.container = null;
-        this.templates = [];
+        this.templatesItems = [];
         this.templatesFile = this.templates();
         this.getTemplates();
     }
@@ -10394,7 +10394,7 @@ class WidgetBase extends __WEBPACK_IMPORTED_MODULE_1__KnockoutComponent__["a" /*
         var element = null;
 
         if (selector) {
-            element = $(selector);
+            element = selector;
         } else {
             element = this.container;
         }
@@ -10402,7 +10402,7 @@ class WidgetBase extends __WEBPACK_IMPORTED_MODULE_1__KnockoutComponent__["a" /*
         var $element = $(element);
 
         //validate if selector es null
-        var template = this.templates.find(x => x.id == id);
+        var template = this.templatesItems.find(x => x.id == id);
 
         if (template) {
             $element.html(template);
@@ -10419,7 +10419,7 @@ class WidgetBase extends __WEBPACK_IMPORTED_MODULE_1__KnockoutComponent__["a" /*
             var templatesInFile = item();
             var allTemplates = $(templatesInFile).find('div');
             allTemplates.toArray().forEach(x => {
-                this.templates.push(x);
+                this.templatesItems.push(x);
             });
         });
 
@@ -10444,174 +10444,10 @@ class WidgetBase extends __WEBPACK_IMPORTED_MODULE_1__KnockoutComponent__["a" /*
 }
 /* harmony export (immutable) */ __webpack_exports__["a"] = WidgetBase;
 
-/* WEBPACK VAR INJECTION */}.call(__webpack_exports__, __webpack_require__(1)))
+/* WEBPACK VAR INJECTION */}.call(__webpack_exports__, __webpack_require__(0)))
 
 /***/ }),
 /* 4 */
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports = __webpack_require__(5);
-
-
-/***/ }),
-/* 5 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__manager_proton_manager__ = __webpack_require__(6);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components__ = __webpack_require__(2);
-
-
-
-let manager = new __WEBPACK_IMPORTED_MODULE_0__manager_proton_manager__["a" /* ProtonManager */]();
-
-/***/ }),
-/* 6 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* WEBPACK VAR INJECTION */(function($) {/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ProtonManager; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components__ = __webpack_require__(2);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__services_WidgetService__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__base_WidgetBase__ = __webpack_require__(3);
-
-
-
-
-class ProtonManager {
-    constructor() {
-        this.init();
-    }
-
-    // identifies widgets configured on the page.
-    init() {
-        $(function () {
-            let widgetContainers = $('[proton]').toArray();
-
-            widgetContainers.forEach((container) => {
-                let widgetName = $(container).attr('proton');
-                var instance = this.createInstance(widgetName);
-
-                if (instance) {
-                    instance.container = container;
-                }
-
-                this.callHooks(instance);
-
-            });
-        });
-    }
-
-    // returns an instance of a class based on the provided name
-    createInstance(name) {
-        var instance = __WEBPACK_IMPORTED_MODULE_1__services_WidgetService__["a" /* WidgetService */].getWidgetInstance(name);
-
-        return instance;
-    }
-
-    // runs hooks defined in the widget class
-    callHooks(instance) {
-
-        if (instance) {
-            if (instance.preRender) {
-                instance.preRender()
-                    .then((x) => {
-                        if (x.render) {
-                            x.render()
-                                .then((y) => {
-                                    if (y.render) {
-                                        y.postRender()
-                                            .then(z => {
-                                                console.log(`Widget ${z.constructor.name} loaded.`);
-                                            })
-                                    }
-                                });
-                        }
-                    });
-            }
-        }
-    }
-}
-
-
-/* WEBPACK VAR INJECTION */}.call(__webpack_exports__, __webpack_require__(1)))
-
-/***/ }),
-/* 7 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__base_WidgetBase__ = __webpack_require__(3);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__services_WidgetService__ = __webpack_require__(0);
-
-
-
-class HomeBanner extends __WEBPACK_IMPORTED_MODULE_0__base_WidgetBase__["a" /* default */] {
-    constructor() {
-        super();
-    }
-
-    templates() {
-        return [
-            () => { return __webpack_require__(11) }
-        ];
-    }
-
-    render() {
-
-        var compiledTemplate = this.compileTemplate('home-banner1', { text: "Julian" });
-
-        var promise = new Promise((resolve, reject) => {
-            console.log("render function called.");
-            resolve(this);
-        });
-
-        return promise;
-    }
-}
-/* unused harmony export HomeBanner */
-
-
-__WEBPACK_IMPORTED_MODULE_1__services_WidgetService__["a" /* WidgetService */].registerWidget(HomeBanner);
-
-/***/ }),
-/* 8 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-const factory = {
-    mappings: {},
-    register: obj => factory.mappings[obj.name] = obj,
-    find: key => factory.mappings[key]
-};
-
-/* harmony default export */ __webpack_exports__["a"] = (factory);
-
-/***/ }),
-/* 9 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_knockout__ = __webpack_require__(10);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_knockout___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_knockout__);
-
-
-class KnockoutComponent {
-    constructor() {
-
-    }
-
-    applyBindings(...parameters) {
-        let [model, element] = parameters
-        return __WEBPACK_IMPORTED_MODULE_0_knockout__["applyBindings"](model, element);
-    }
-}
-/* harmony export (immutable) */ __webpack_exports__["a"] = KnockoutComponent;
-
-
-/***/ }),
-/* 10 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
@@ -16554,10 +16390,188 @@ ko.exportSymbol('nativeTemplateEngine', ko.nativeTemplateEngine);
 
 
 /***/ }),
+/* 5 */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__(6);
+
+
+/***/ }),
+/* 6 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* WEBPACK VAR INJECTION */(function($) {/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__manager_proton_manager__ = __webpack_require__(7);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components__ = __webpack_require__(2);
+
+
+
+$(function () {
+    let manager = new __WEBPACK_IMPORTED_MODULE_0__manager_proton_manager__["a" /* ProtonManager */]();
+})
+/* WEBPACK VAR INJECTION */}.call(__webpack_exports__, __webpack_require__(0)))
+
+/***/ }),
+/* 7 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* WEBPACK VAR INJECTION */(function($) {/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ProtonManager; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components__ = __webpack_require__(2);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__services_WidgetService__ = __webpack_require__(1);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__base_WidgetBase__ = __webpack_require__(3);
+
+
+
+
+class ProtonManager {
+    constructor() {
+        this.init();
+    }
+
+    // identifies widgets configured on the page.
+    init() {
+        let widgetContainers = $('[proton]').toArray();
+
+        widgetContainers.forEach((container) => {
+            let widgetName = $(container).attr('proton');
+            var instance = this.createInstance(widgetName);
+
+            if (instance) {
+                instance.container = container;
+            }
+
+            this.callHooks(instance);
+
+        });
+    }
+
+    // returns an instance of a class based on the provided name
+    createInstance(name) {
+        var instance = __WEBPACK_IMPORTED_MODULE_1__services_WidgetService__["a" /* WidgetService */].getWidgetInstance(name);
+
+        return instance;
+    }
+
+    // runs hooks defined in the widget class
+    callHooks(instance) {
+
+        if (instance) {
+            if (instance.preRender) {
+                instance.preRender()
+                    .then((x) => {
+                        if (x.render) {
+                            x.render()
+                                .then((y) => {
+                                    if (y.render) {
+                                        y.postRender()
+                                            .then(z => {
+                                                console.log(`Widget ${z.constructor.name} loaded.`);
+                                            })
+                                    }
+                                });
+                        }
+                    });
+            }
+        }
+    }
+}
+
+
+/* WEBPACK VAR INJECTION */}.call(__webpack_exports__, __webpack_require__(0)))
+
+/***/ }),
+/* 8 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* WEBPACK VAR INJECTION */(function($) {/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__base_WidgetBase__ = __webpack_require__(3);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__services_WidgetService__ = __webpack_require__(1);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_knockout__ = __webpack_require__(4);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_knockout___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_knockout__);
+
+
+
+
+class HomeBanner extends __WEBPACK_IMPORTED_MODULE_0__base_WidgetBase__["a" /* default */] {
+    constructor() {
+        super();
+        this.text = "Julian"
+        this.items = __WEBPACK_IMPORTED_MODULE_2_knockout__["observable"]([{ name: "Julian" }, { name: "Ramiro" }, { name: "Marcelo" }]);
+    }
+
+    templates() {
+        return [
+            () => { return __webpack_require__(11) },
+            () => { return __webpack_require__(12) }
+        ];
+    }
+
+    render() {
+
+        var container = this.compileTemplate('banner-container', this);
+        this.compileTemplate('banner-subcontainer', this, $(container).find('.container')[0]);
+        var promise = new Promise((resolve, reject) => {
+            console.log("render function called.");
+            resolve(this);
+        });
+
+        return promise;
+    }
+}
+/* unused harmony export HomeBanner */
+
+
+__WEBPACK_IMPORTED_MODULE_1__services_WidgetService__["a" /* WidgetService */].registerWidget(HomeBanner);
+/* WEBPACK VAR INJECTION */}.call(__webpack_exports__, __webpack_require__(0)))
+
+/***/ }),
+/* 9 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+const factory = {
+    mappings: {},
+    register: obj => factory.mappings[obj.name] = obj,
+    find: key => factory.mappings[key]
+};
+
+/* harmony default export */ __webpack_exports__["a"] = (factory);
+
+/***/ }),
+/* 10 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_knockout__ = __webpack_require__(4);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_knockout___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_knockout__);
+
+
+class KnockoutComponent {
+    constructor() {
+
+    }
+
+    applyBindings(...parameters) {
+        let [model, element] = parameters
+        return __WEBPACK_IMPORTED_MODULE_0_knockout__["applyBindings"](model, element);
+    }
+}
+/* harmony export (immutable) */ __webpack_exports__["a"] = KnockoutComponent;
+
+
+/***/ }),
 /* 11 */
 /***/ (function(module, exports) {
 
-module.exports = "<section>\r\n    <div id=\"home-banner1\">\r\n        <h1>Hello: <span data-bind=\"text: text\"></span></h1>\r\n    </div>\r\n    <div id=\"home-banner2\">\r\n        <h1>Test</h1>\r\n    </div>\r\n    <div id=\"home-banner3\">\r\n        <h1>Test</h1>\r\n    </div>\r\n</section>";
+module.exports = "<!-- There must only one root element. First children will be templates -->\r\n\r\n<section>\r\n    <div id=\"banner-container\">\r\n        <ul data-bind=\"foreach: items\">\r\n            <li><span data-bind=\"{text: name}\"></span></li>\r\n        </ul>\r\n       <div class=\"container\"></div>\r\n    </div>\r\n    <div id=\"banner-subcontainer\">\r\n        <h1>Hello <span data-bind=\"{text : text}\"></span></h1>\r\n    </div>\r\n    <div id=\"home-banner3\">\r\n        <h1>Test</h1>\r\n    </div>\r\n</section>";
+
+/***/ }),
+/* 12 */
+/***/ (function(module, exports) {
+
+module.exports = "";
 
 /***/ })
 /******/ ]);

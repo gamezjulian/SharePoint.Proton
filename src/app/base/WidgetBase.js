@@ -7,7 +7,7 @@ export default class WidgetBase extends KnockoutComponent {
 
         WidgetService.registerWidget(this);
         this.container = null;
-        this.templates = [];
+        this.templatesItems = [];
         this.templatesFile = this.templates();
         this.getTemplates();
     }
@@ -22,7 +22,7 @@ export default class WidgetBase extends KnockoutComponent {
         var element = null;
 
         if (selector) {
-            element = $(selector);
+            element = selector;
         } else {
             element = this.container;
         }
@@ -30,7 +30,7 @@ export default class WidgetBase extends KnockoutComponent {
         var $element = $(element);
 
         //validate if selector es null
-        var template = this.templates.find(x => x.id == id);
+        var template = this.templatesItems.find(x => x.id == id);
 
         if (template) {
             $element.html(template);
@@ -47,7 +47,7 @@ export default class WidgetBase extends KnockoutComponent {
             var templatesInFile = item();
             var allTemplates = $(templatesInFile).find('div');
             allTemplates.toArray().forEach(x => {
-                this.templates.push(x);
+                this.templatesItems.push(x);
             });
         });
 
