@@ -11,8 +11,8 @@ export class HomeBanner extends WidgetBase {
 
     templates() {
         return [
-            () => { return require('./home-banner-template.html') },
-            () => { return require('./home-banner-template2.html') }
+            () => { return require('./views/home-banner-template.html') },
+            () => { return require('./views/home-banner-template2.html') }
         ];
     }
 
