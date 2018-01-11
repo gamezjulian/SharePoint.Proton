@@ -6,7 +6,7 @@ export default class WidgetBase extends KnockoutComponent {
         super();
 
         WidgetService.registerWidget(this);
-        this.container = null;
+        this.container = null; 
         this.templates = [];
     }
 
