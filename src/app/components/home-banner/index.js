@@ -6,7 +6,7 @@ export class HomeBanner extends WidgetBase {
         super();
     }
 
-    templateUrl() {
+    templates() {
         return [
             () => { return require('./home-banner.html') }
         ];
@@ -14,7 +14,7 @@ export class HomeBanner extends WidgetBase {
 
     render() {
 
-        var compiledTemplate = this.compileTemplate('home-banner1', {});
+        var compiledTemplate = this.compileTemplate('home-banner1', { text: "Julian" });
 
         var promise = new Promise((resolve, reject) => {
             console.log("render function called.");

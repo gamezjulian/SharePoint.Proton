@@ -8,16 +8,16 @@ export default class WidgetBase extends KnockoutComponent {
         WidgetService.registerWidget(this);
         this.container = null;
         this.templates = [];
-        this.templatesFile = this.templateUrl();
+        this.templatesFile = this.templates();
         this.getTemplates();
     }
 
-    // Template methods
-
-    templateUrl() {
+    // returns requiered html templates
+    templates() {
         return this.templatesFile = [];
     }
 
+    // compiles templates based on the configured templates and the compiled method provided by the parent
     compileTemplate(id, model, selector) {
         var element = null;
 
@@ -33,12 +33,15 @@ export default class WidgetBase extends KnockoutComponent {
         var template = this.templates.find(x => x.id == id);
 
         if (template) {
-            element.html(template);
+            $element.html(template);
         }
+
+        this.applyBindings(model, element);
 
         return element;
     }
 
+    // obtains all the templates configured into a html file.
     getTemplates() {
         this.templatesFile.forEach((item) => {
             var templatesInFile = item();
@@ -52,14 +55,17 @@ export default class WidgetBase extends KnockoutComponent {
 
     //Hooks methods
 
+    // runs before the render. Can be used to obtain all the data and set it in class properties
     preRender() {
         return Promise.resolve(this);
     }
 
+    // used to render data based on templates
     render() {
         return Promise.resolve(this);
     }
 
+    // runs after the render function. Used to attach events or to do something once the html was already inserted in the DOM
     postRender() {
         return Promise.resolve(this);
     }
