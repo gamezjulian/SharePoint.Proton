@@ -21,12 +21,7 @@ class ProtonManager {
     }
 
     createInstance(name) {
-        var widgetClass = WidgetService.getWidgetClass(name);
-        var instance = null;
-
-        if (widgetClass) {
-            instance = eval(widgetClass);
-        }
+        var instance = WidgetService.getWidgetInstance(name);
 
         return instance;
     }

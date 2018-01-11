@@ -1,14 +1,18 @@
+import factory from '../configuration/configurationFactory'
+
 class WidgetService {
     constructor() {
-        this.widgets = [];
     }
 
     registerWidget(widget) {
-        this.widgets.push(widget);
+        factory.register(widget);
     }
 
-    getWidgetClass(name) {
-        return this.widgets.find(x => x.constructor.name == name);
+    getWidgetInstance(name) {
+        const Class = factory.find(name);
+        const instance = new Class();
+
+        return instance;
     }
 }
 

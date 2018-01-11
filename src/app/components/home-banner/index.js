@@ -1,4 +1,5 @@
 import WidgetBase from '../../base/WidgetBase';
+import { WidgetService } from '../../services/WidgetService';
 
 export class HomeBanner extends WidgetBase {
     constructor() {
@@ -7,9 +8,7 @@ export class HomeBanner extends WidgetBase {
 
     templateUrl() {
         return [
-            () => {
-                return require('./home-banner.html')
-            }
+            () => { return require('./home-banner.html') }
         ];
     }
 
@@ -26,4 +25,4 @@ export class HomeBanner extends WidgetBase {
     }
 }
 
-new HomeBanner();
+WidgetService.registerWidget(HomeBanner);
