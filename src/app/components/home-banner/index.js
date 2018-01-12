@@ -16,6 +16,10 @@ export class HomeBanner extends WidgetBase {
         ];
     }
 
+    preRender() {
+        return new Promise((res, rej) => { res(this); });
+    }
+
     render() {
 
         var promiseFunc = (resolve, reject) => {
@@ -26,7 +30,6 @@ export class HomeBanner extends WidgetBase {
                     this.items = items;
                     var container = this.compileTemplate('banner-container', this);
 
-                    console.log("render function finished.");
                     resolve(this);
                 })
                 .catch((err) => {
@@ -37,6 +40,10 @@ export class HomeBanner extends WidgetBase {
 
         return new Promise(promiseFunc);
     };
+
+    postRender() {
+        return new Promise((res, rej) => { res(this) });
+    }
 }
 
 WidgetService.registerWidget(HomeBanner);

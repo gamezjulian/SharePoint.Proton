@@ -34,22 +34,30 @@ class ProtonManager {
     // runs hooks defined in the widget class
     callHooks(instance) {
 
+        // if (instance) {
+        //     if (instance.preRender) {
+        //         instance.preRender()
+        //             .then((x) => {
+        //                 if (x.render) {
+        //                     x.render()
+        //                         .then((y) => {
+        //                             if (y.postRender) {
+        //                                 y.postRender()
+        //                                     .then(z => {
+        //                                         console.log(`Widget ${z.constructor.name} loaded.`);
+        //                                     })
+        //                             }
+        //                         });
+        //                 }
+        //             });
+        //     }
+        // }
+
         if (instance) {
             if (instance.preRender) {
                 instance.preRender()
-                    .then((x) => {
-                        if (x.render) {
-                            x.render()
-                                .then((y) => {
-                                    if (y.postRender) {
-                                        y.postRender()
-                                            .then(z => {
-                                                console.log(`Widget ${z.constructor.name} loaded.`);
-                                            })
-                                    }
-                                });
-                        }
-                    });
+                    .then(x => x.render())
+                    .then(x => x.postRender());
             }
         }
     }
