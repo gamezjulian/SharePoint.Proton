@@ -1,6 +1,7 @@
 import { ProtonManager } from './manager/proton-manager'
-import * as components from './components'
-import * as pnp from 'sp-pnp-js'
+import * as pnp from 'sp-pnp-js';
+
+require('./components');
 
 pnp.setup({
     headers: {
@@ -11,4 +12,5 @@ pnp.setup({
 
 $(function () {
     let manager = new ProtonManager();
+    manager.init();
 })

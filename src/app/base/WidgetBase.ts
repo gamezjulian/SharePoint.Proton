@@ -2,6 +2,11 @@ import { WidgetService } from '../services/WidgetService'
 import KnockoutComponent from './KnockoutComponent'
 
 export default class WidgetBase extends KnockoutComponent {
+
+    protected container;
+    private templatesItems;
+    private templatesFile;
+
     constructor() {
         super();
 
@@ -13,12 +18,12 @@ export default class WidgetBase extends KnockoutComponent {
     }
 
     // returns requiered html templates
-    templates() {
+    protected templates() {
         return this.templatesFile = [];
     }
 
     // compiles templates based on the configured templates and the compiled method provided by the parent
-    compileTemplate(id, model, selector) {
+    protected compileTemplate(id, model, selector?) {
         var element = null;
 
         if (selector) {
@@ -42,7 +47,7 @@ export default class WidgetBase extends KnockoutComponent {
     }
 
     // obtains all the templates configured into a html file.
-    getTemplates() {
+    protected getTemplates() {
         this.templatesFile.forEach((item) => {
             var templatesInFile = item();
             var allTemplates = $(templatesInFile).find('div');
@@ -62,7 +67,7 @@ export default class WidgetBase extends KnockoutComponent {
 
     // used to render data based on templates
     render() {
-        return Promise.resolve(this);
+        return new Promise((x) => x(this));
     }
 
     // runs after the render function. Used to attach events or to do something once the html was already inserted in the DOM

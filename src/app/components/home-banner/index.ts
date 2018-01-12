@@ -1,9 +1,11 @@
 import WidgetBase from '../../base/WidgetBase';
 import { WidgetService } from '../../services/WidgetService';
 import { BannerService } from './services/bannerService';
-import * as ko from 'knockout';
 
-export class HomeBanner extends WidgetBase {
+export default class HomeBanner extends WidgetBase {
+
+    private items;
+
     constructor() {
         super();
 
@@ -24,7 +26,7 @@ export class HomeBanner extends WidgetBase {
                 .then(items => {
 
                     this.items = items;
-                    var container = this.compileTemplate('banner-container', this);
+                    this.compileTemplate('banner-container', this);
 
                     console.log("render function finished.");
                     resolve(this);

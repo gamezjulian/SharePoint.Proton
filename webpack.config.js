@@ -25,21 +25,22 @@ module.exports = {
 
     module: {
         loaders: [
-            {
-                test: /\.es6$/,
-                exclude: /node_modules/,
-                loader: "babel-loader"
-            },
+           
             {
                 test: /\.html$/,
                 exclude: /node_modules/,
                 loader: "html-loader"
+            },
+            {
+                test: /\.ts?$/,
+                exclude: /node_modules/,
+                loader: "ts-loader"
             }
         ]
     },
 
     // which extensions are resolver when require('') is called
     resolve: {
-        extensions: ['*', '.js', '.es6']
+        extensions: ['*', '.js', '.es6', '.ts'],
     }
 }
