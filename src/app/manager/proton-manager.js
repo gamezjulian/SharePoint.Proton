@@ -41,7 +41,7 @@ class ProtonManager {
                         if (x.render) {
                             x.render()
                                 .then((y) => {
-                                    if (y.render) {
+                                    if (y.postRender) {
                                         y.postRender()
                                             .then(z => {
                                                 console.log(`Widget ${z.constructor.name} loaded.`);

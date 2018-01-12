@@ -6,33 +6,37 @@ import * as ko from 'knockout';
 export class HomeBanner extends WidgetBase {
     constructor() {
         super();
-        this.text = "Julian"
-        this.items = ko.observable([{ name: "Julian" }, { name: "Ramiro" }, { name: "Marcelo" }]);
+
+        this.items = [];
     }
 
     templates() {
         return [
-            () => { return require('./views/home-banner-template.html') },
-            () => { return require('./views/home-banner-template2.html') }
+            () => { return require('./views/home-banner-template.html') }
         ];
     }
 
     render() {
 
-        BannerService.getItems()
-            .then(items => {
-                var i = items;
-            });
+        var promiseFunc = (resolve, reject) => {
 
-        var container = this.compileTemplate('banner-container', this);
-        this.compileTemplate('banner-subcontainer', this, $(container).find('.container')[0]);
-        var promise = new Promise((resolve, reject) => {
-            console.log("render function called.");
-            resolve(this);
-        });
+            BannerService.getItems()
+                .then(items => {
 
-        return promise;
-    }
+                    this.items = items;
+                    var container = this.compileTemplate('banner-container', this);
+
+                    console.log("render function finished.");
+                    resolve(this);
+                })
+                .catch((err) => {
+                    console.log(err);
+                    reject(err);
+                });
+        }
+
+        return new Promise(promiseFunc);
+    };
 }
 
 WidgetService.registerWidget(HomeBanner);

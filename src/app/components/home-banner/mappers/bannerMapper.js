@@ -1,7 +1,11 @@
+import BannerViewModel from '../models/bannerViewModel';
+
 export default class BannerMapper {
-    constructor(entity) {
-        return {
-            title: entity.title
-        };
+    constructor() {
+
+    }
+
+    map(entity) {
+        return new BannerViewModel(entity.Title);
     }
 }
