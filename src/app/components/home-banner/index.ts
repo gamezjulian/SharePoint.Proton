@@ -1,44 +1,34 @@
-import WidgetBase from '../../base/WidgetBase';
+import { WidgetBase } from '../../base/WidgetBase';
 import { WidgetService } from '../../services/WidgetService';
 import { BannerService } from './services/bannerService';
+import { iWidget } from '../../interfaces/iWidget';
 
-export default class HomeBanner extends WidgetBase {
+export class HomeBanner extends WidgetBase {
 
     private items;
 
-    constructor() {
+    public constructor() {
         super();
 
         this.items = [];
     }
 
-    templates() {
+    public templates(): Array<any> {
         return [
             () => { return require('./views/home-banner-template.html') }
         ];
     }
 
-    render() {
-
-        var promiseFunc = (resolve, reject) => {
-
-            BannerService.getItems()
-                .then(items => {
-
-                    this.items = items;
-                    this.compileTemplate('banner-container', this);
-
-                    console.log("render function finished.");
-                    resolve(this);
-                })
-                .catch((err) => {
-                    console.log(err);
-                    reject(err);
-                });
-        }
-
-        return new Promise(promiseFunc);
-    };
+    public async render(): Promise<void> {
+        return BannerService.getItems()
+            .then(items => {
+                this.items = items;
+                this.compileTemplate('banner-container', this);
+            })
+            .catch((err) => {
+                console.log(err);
+            });
+    }
 }
 
 WidgetService.registerWidget(HomeBanner);

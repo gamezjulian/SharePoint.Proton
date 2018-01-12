@@ -1,11 +1,12 @@
 import { WidgetService } from '../services/WidgetService';
+import { iWidget } from '../interfaces/iWidget';
 
 class ProtonManager {
-    constructor() {
+    public constructor() {
     }
 
     // identifies widgets configured on the page.
-    public init() {
+    public init(): void {
         let widgetContainers = $('[proton]').toArray();
 
         widgetContainers.forEach((container) => {
@@ -22,32 +23,19 @@ class ProtonManager {
     }
 
     // returns an instance of a class based on the provided name
-    private createInstance(name) {
+    private createInstance(name: string) {
         var instance = WidgetService.getWidgetInstance(name);
 
         return instance;
     }
 
     // runs hooks defined in the widget class
-    private callHooks(instance) {
+    private async callHooks(instance: iWidget) {
 
         if (instance) {
-            if (instance.preRender) {
-                instance.preRender()
-                    .then((x) => {
-                        if (x.render) {
-                            x.render()
-                                .then((y) => {
-                                    if (y.postRender) {
-                                        y.postRender()
-                                            .then(z => {
-                                                console.log(`Widget ${z.constructor.name} loaded.`);
-                                            })
-                                    }
-                                });
-                        }
-                    });
-            }
+            await instance.preRender();
+            await instance.render();
+            await instance.postRender();
         }
     }
 }

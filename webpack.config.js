@@ -25,18 +25,13 @@ module.exports = {
 
     module: {
         loaders: [
-           
-            {
-                test: /\.html$/,
-                exclude: /node_modules/,
-                loader: "html-loader"
-            },
-            {
-                test: /\.ts?$/,
-                exclude: /node_modules/,
-                loader: "ts-loader"
-            }
+            { test: /\.html$/, exclude: /node_modules/, use: ["html"] },
+            { test: /\.ts?$/, exclude: /node_modules/, use: ["ts"] }
         ]
+    },
+
+    resolveLoader: {
+        moduleExtensions: ["-loader"]
     },
 
     // which extensions are resolver when require('') is called

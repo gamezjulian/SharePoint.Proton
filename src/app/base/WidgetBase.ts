@@ -1,35 +1,36 @@
 import { WidgetService } from '../services/WidgetService'
 import KnockoutComponent from './KnockoutComponent'
+import { iWidget } from '../interfaces/iWidget';
 
-export default class WidgetBase extends KnockoutComponent {
+abstract class WidgetBase extends KnockoutComponent implements iWidget {
 
-    protected container;
+    public Container;
     private templatesItems;
     private templatesFile;
 
-    constructor() {
+    public constructor() {
         super();
 
         WidgetService.registerWidget(this);
-        this.container = null;
+        this.Container = null;
         this.templatesItems = [];
         this.templatesFile = this.templates();
         this.getTemplates();
     }
 
     // returns requiered html templates
-    protected templates() {
+    protected templates(): any {
         return this.templatesFile = [];
     }
 
     // compiles templates based on the configured templates and the compiled method provided by the parent
-    protected compileTemplate(id, model, selector?) {
+    protected compileTemplate(id, model, selector?): Element {
         var element = null;
 
         if (selector) {
             element = selector;
         } else {
-            element = this.container;
+            element = this.Container;
         }
 
         var $element = $(element);
@@ -47,7 +48,7 @@ export default class WidgetBase extends KnockoutComponent {
     }
 
     // obtains all the templates configured into a html file.
-    protected getTemplates() {
+    protected getTemplates(): void {
         this.templatesFile.forEach((item) => {
             var templatesInFile = item();
             var allTemplates = $(templatesInFile).find('div');
@@ -55,23 +56,17 @@ export default class WidgetBase extends KnockoutComponent {
                 this.templatesItems.push(x);
             });
         });
-
     }
 
-    //Hooks methods
-
-    // runs before the render. Can be used to obtain all the data and set it in class properties
-    preRender() {
-        return Promise.resolve(this);
+    public async preRender(): Promise<void> {
+        return new Promise<void>((res, rej) => res());
     }
 
-    // used to render data based on templates
-    render() {
-        return new Promise((x) => x(this));
-    }
+    public abstract async render(): Promise<void>;
 
-    // runs after the render function. Used to attach events or to do something once the html was already inserted in the DOM
-    postRender() {
-        return Promise.resolve(this);
+    public async postRender(): Promise<void> {
+        return new Promise<void>((res, rej) => res());
     }
 }
+
+export { WidgetBase }
