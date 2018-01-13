@@ -1,7 +1,7 @@
 import { ProtonManager } from './proton/manager/protonManager';
 import * as pnp from 'sp-pnp-js';
 
-require('./components');
+require('../app/custom/components');
 
 pnp.setup({
     headers: {

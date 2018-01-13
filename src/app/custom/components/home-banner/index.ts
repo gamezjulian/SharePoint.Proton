@@ -1,6 +1,6 @@
-import { ProtonWidget } from '../../proton/base';
-import { ProtonWidgetService } from '../../proton/services';
-import { BannerService } from './services/bannerService';
+import { ProtonWidget } from '../../../proton/base';
+import { ProtonWidgetService } from '../../../proton/services';
+import { BannerService } from './services/bannerService'; 
 
 export class HomeBanner extends ProtonWidget {
 
