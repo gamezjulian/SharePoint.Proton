@@ -1,5 +1,5 @@
-import { WidgetService } from '../services/WidgetService';
-import { iWidget } from '../interfaces/iWidget';
+import { ProtonWidgetService } from '../services';
+import { iProtonWidget } from '../interfaces';
 
 class ProtonManager {
     public constructor() {
@@ -14,7 +14,8 @@ class ProtonManager {
             var instance = this.createInstance(widgetName);
 
             if (instance) {
-                instance.container = container;
+                instance.Container = container;
+                instance.Name = widgetName;
             }
 
             this.callHooks(instance);
@@ -24,17 +25,17 @@ class ProtonManager {
 
     // returns an instance of a class based on the provided name
     private createInstance(name: string) {
-        var instance = WidgetService.getWidgetInstance(name);
+        var instance = ProtonWidgetService.getWidgetInstance(name);
 
         return instance;
     }
 
     // runs hooks defined in the widget class
-    private async callHooks(instance: iWidget) {
+    private async callHooks(instance: iProtonWidget) {
 
         if (instance) {
             await instance.preRender();
-            await instance.render();
+            await instance.whileRender();
             await instance.postRender();
         }
     }

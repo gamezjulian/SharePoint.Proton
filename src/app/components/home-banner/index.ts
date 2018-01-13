@@ -1,9 +1,8 @@
-import { WidgetBase } from '../../base/WidgetBase';
-import { WidgetService } from '../../services/WidgetService';
+import { ProtonWidget } from '../../proton/base';
+import { ProtonWidgetService } from '../../proton/services';
 import { BannerService } from './services/bannerService';
-import { iWidget } from '../../interfaces/iWidget';
 
-export class HomeBanner extends WidgetBase {
+export class HomeBanner extends ProtonWidget {
 
     private items;
 
@@ -31,4 +30,4 @@ export class HomeBanner extends WidgetBase {
     }
 }
 
-WidgetService.registerWidget(HomeBanner);
+ProtonWidgetService.registerWidget(HomeBanner);

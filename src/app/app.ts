@@ -1,4 +1,4 @@
-import { ProtonManager } from './manager/proton-manager'
+import { ProtonManager } from './proton/manager/protonManager';
 import * as pnp from 'sp-pnp-js';
 
 require('./components');

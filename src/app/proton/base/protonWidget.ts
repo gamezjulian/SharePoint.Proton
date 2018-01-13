@@ -1,18 +1,20 @@
-import { WidgetService } from '../services/WidgetService'
-import KnockoutComponent from './KnockoutComponent'
-import { iWidget } from '../interfaces/iWidget';
+import { ProtonWidgetService } from '../services';
+import KnockoutComponent from './knockoutComponent';
+import { iProtonWidget } from '../interfaces';
 
-abstract class WidgetBase extends KnockoutComponent implements iWidget {
+abstract class ProtonWidget extends KnockoutComponent implements iProtonWidget {
 
     public Container;
-    private templatesItems;
-    private templatesFile;
+    public Name;
+
+    private templatesItems: any;
+    private templatesFile: any;
 
     public constructor() {
         super();
 
-        WidgetService.registerWidget(this);
-        this.Container = null;
+        ProtonWidgetService.registerWidget(this);
+        this.Container = null; 
         this.templatesItems = [];
         this.templatesFile = this.templates();
         this.getTemplates();
@@ -50,7 +52,7 @@ abstract class WidgetBase extends KnockoutComponent implements iWidget {
     // obtains all the templates configured into a html file.
     protected getTemplates(): void {
         this.templatesFile.forEach((item) => {
-            var templatesInFile = item();
+            var templatesInFile = item(); 
             var allTemplates = $(templatesInFile).find('div');
             allTemplates.toArray().forEach(x => {
                 this.templatesItems.push(x);
@@ -59,14 +61,21 @@ abstract class WidgetBase extends KnockoutComponent implements iWidget {
     }
 
     public async preRender(): Promise<void> {
+        console.log(`proton-widget: ${this.Name} .Pre-render method.`)
         return new Promise<void>((res, rej) => res());
+    }
+
+    public async whileRender(): Promise<void> {
+        console.log(`proton-widget: ${this.Name} .Render method.`)
+        return this.render();
     }
 
     public abstract async render(): Promise<void>;
 
     public async postRender(): Promise<void> {
+        console.log(`proton-widget: ${this.Name} .Post-render method.`)
         return new Promise<void>((res, rej) => res());
     }
 }
 
-export { WidgetBase }
+export { ProtonWidget }
