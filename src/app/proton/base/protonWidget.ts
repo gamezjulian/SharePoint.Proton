@@ -8,13 +8,13 @@ abstract class ProtonWidget extends KnockoutComponent implements iProtonWidget {
     public Name;
 
     private templatesItems: any;
-    private templatesFile: any;
+    private templatesFile: Array<() => string>;
 
     public constructor() {
         super();
 
         ProtonWidgetService.registerWidget(this);
-        this.Container = null; 
+        this.Container = null;
         this.templatesItems = [];
         this.templatesFile = this.templates();
         this.getTemplates();
@@ -52,7 +52,7 @@ abstract class ProtonWidget extends KnockoutComponent implements iProtonWidget {
     // obtains all the templates configured into a html file.
     protected getTemplates(): void {
         this.templatesFile.forEach((item) => {
-            var templatesInFile = item(); 
+            var templatesInFile = item();
             var allTemplates = $(templatesInFile).find('div');
             allTemplates.toArray().forEach(x => {
                 this.templatesItems.push(x);
